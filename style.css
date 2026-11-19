@@ -1,0 +1,247 @@
+:root {
+  --ink: #1f2a24;
+  --muted: #5d6b63;
+  --paper: #fffaf1;
+  --line: #f0e4cf;
+
+  --green: #1fb15a;
+  --green-dark: #0e8a41;
+  --green-soft: #e0f7e9;
+  --orange: #ff8a1f;
+  --orange-soft: #ffeedb;
+  --red: #ec3b4a;
+  --red-soft: #ffe4e7;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: "Segoe UI", Tahoma, sans-serif;
+  color: var(--ink);
+  background: #fde9cf;
+  padding: 24px 12px;
+  line-height: 1.5;
+  -webkit-print-color-adjust: exact;
+  print-color-adjust: exact;
+}
+
+.page {
+  max-width: 920px;
+  margin: 0 auto;
+  background: var(--paper);
+  box-shadow: 0 10px 30px rgba(14, 138, 65, .22);
+  overflow: hidden;
+}
+
+
+header {
+  position: relative;
+  display: grid;
+  grid-template-columns: 180px 1fr auto;
+  gap: 28px;
+  align-items: center;
+  padding: 32px 28px;
+  background: linear-gradient(120deg, var(--green-dark) 0%, var(--green) 100%);
+  color: #fff;
+  overflow: hidden;
+  border-bottom: 6px solid var(--orange);
+}
+
+
+header::before,
+header::after {
+  content: "";
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+header::before {
+  width: 260px; height: 260px;
+  right: -70px; top: -110px;
+  background: rgba(255, 138, 31, .35);
+}
+header::after {
+  width: 120px; height: 120px;
+  left: 38%; bottom: -70px;
+  border: 14px solid rgba(236, 59, 74, .35);
+}
+header > * { position: relative; z-index: 1; }
+
+/* foto dengan bingkai bergeser */
+.photo-wrap { position: relative; width: 180px; height: 300px; }
+.photo-wrap::before {
+  content: "";
+  position: absolute;
+  inset: 10px -10px -10px 10px;
+  border: 3px solid var(--orange);
+}
+.photo {
+  position: relative;
+  width: 100%; height: 100%;
+  background: rgba(255, 255, 255, .2);
+  display: grid; place-items: center;
+  font-size: 13px; color: #fff;
+  text-align: center;
+  overflow: hidden;
+}
+.photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+}
+
+.identity h1 { font-size: 32px; line-height: 1.1; letter-spacing: .3px; }
+.identity .role {
+  display: inline-block;
+  margin: 10px 0 12px;
+  padding: 3px 14px;
+  background: var(--orange);
+  color: #fff;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 999px;
+}
+.identity p { color: #fff; opacity: .95; font-size: 14px; max-width: 46ch; }
+
+.contact {
+  font-size: 14px;
+  display: grid;
+  gap: 6px;
+  justify-items: end;
+  text-align: right;
+}
+.contact span { color: #fff; }
+
+/* logo (img) */
+.logo {
+  display: block;
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+  border-radius: 50%;
+  margin-bottom: 4px;
+}
+
+/* ===== BODY ===== */
+.body {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 22px;
+  padding: 28px 28px 32px;
+  background: linear-gradient(180deg, #fff6e6 0%, #ffecd0 100%);
+}
+.col { display: grid; gap: 16px; align-content: start; }
+
+.card {
+  --c: var(--green);
+  --c-soft: var(--green-soft);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-top: 4px solid var(--c);
+  border-radius: 10px;
+  padding: 14px 16px 16px;
+  box-shadow: 0 4px 14px rgba(120, 70, 10, .10);
+}
+.card h2 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  color: var(--c);
+  margin-bottom: 10px;
+}
+.card p,
+.card li { font-size: 14px; color: var(--muted); }
+.card ul { padding-left: 18px; display: grid; gap: 5px; }
+.card li::marker { color: var(--c); }
+
+.icon {
+  flex: none;
+  width: 32px; height: 32px;
+  display: grid; place-items: center;
+  background: var(--c-soft);
+  font-size: 15px;
+  border-radius: 9px;
+}
+.icon.round { border-radius: 50%; }
+
+/* warna tiap kartu: kolom kiri */
+.left .card:nth-child(1) { --c: var(--green);  --c-soft: var(--green-soft); }
+.left .card:nth-child(2) { --c: var(--orange); --c-soft: var(--orange-soft); }
+.left .card:nth-child(3) { --c: var(--red);    --c-soft: var(--red-soft); }
+.left .card:nth-child(4) { --c: var(--green);  --c-soft: var(--green-soft); }
+
+/* warna tiap kartu: kolom kanan */
+.right .card:nth-child(1) { --c: var(--orange); --c-soft: var(--orange-soft); }
+.right .card:nth-child(2) { --c: var(--green);  --c-soft: var(--green-soft); }
+.right .card:nth-child(3) { --c: var(--red);    --c-soft: var(--red-soft); }
+.right .card:nth-child(4) { --c: var(--orange); --c-soft: var(--orange-soft); }
+
+/* skill berbentuk chip */
+.chips {
+  list-style: none;
+  padding-left: 0 !important;
+  display: flex !important;
+  flex-wrap: wrap;
+  gap: 6px !important;
+}
+.chips li {
+  padding: 3px 11px;
+  background: var(--c-soft);
+  color: var(--c) !important;
+  border: 1px solid var(--c);
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* kolom kanan: garis timeline */
+.right { position: relative; }
+.right::before {
+  content: "";
+  position: absolute;
+  left: -12px; top: 8px; bottom: 8px;
+  width: 3px;
+  border-radius: 3px;
+  background: linear-gradient(var(--orange), var(--green), var(--red), var(--orange));
+}
+.right .card { position: relative; }
+.right .card::before {
+  content: "";
+  position: absolute;
+  left: -20px; top: 22px;
+  width: 12px; height: 12px;
+  background: var(--c);
+  border: 3px solid #fff3df;
+  border-radius: 50%;
+}
+.when {
+  display: inline-block;
+  margin: 0 0 10px 42px;
+  padding: 1px 11px;
+  background: var(--c);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 600;
+  border-radius: 999px;
+}
+
+/* ===== RESPONSIF ===== */
+@media (max-width: 720px) {
+  header {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    text-align: center;
+  }
+  .contact { justify-items: center; text-align: center; }
+  .body { grid-template-columns: 1fr; }
+  .right::before,
+  .right .card::before { display: none; }
+}
+
+/* ===== PRINT ===== */
+@media print {
+  body { background: #fff; padding: 0; }
+  .page { box-shadow: none; }
+}
